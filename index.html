@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reptile Awakening • Altima Sri Nathaniel Henrietta</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Space+Grotesk:wght@400;500;600&display=swap');
+:root {
+--reptile-green: #0a3d2f;
+--scale-gold: #d4af37;
+--void-black: #0f0f0f;
+--blood-red: #8b0000;
+}
+body {
+margin: 0;
+padding: 0;
+background: linear-gradient(to bottom, #0a0a0a, #1a2f25);
+color: #c0c0c0;
+font-family: 'Space Grotesk', system-ui, sans-serif;
+line-height: 1.6;
+overflow-x: hidden;
+}
+.scale-bg {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background:
+radial-gradient(circle at 30% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+radial-gradient(circle at 70% 80%, rgba(10, 61, 47, 0.12) 0%, transparent 60%),
+repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(139, 0, 0, 0.03) 40px, rgba(139, 0, 0, 0.03) 80px);
+z-index: -2;
+pointer-events: none;
+}
+header {
+background: rgba(15, 15, 15, 0.95);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid var(--scale-gold);
+position: sticky;
+top: 0;
+z-index: 100;
+padding: 1.5rem 0;
+}
+.nav {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 2rem;
+}
+.logo {
+font-family: 'Playfair Display', serif;
+font-size: 2rem;
+color: var(--scale-gold);
+text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+letter-spacing: 3px;
+}
+.nav-links a {
+color: #c0c0c0;
+text-decoration: none;
+margin-left: 2rem;
+font-weight: 500;
+transition: all 0.3s;
+position: relative;
+}
+.nav-links a:hover {
+color: var(--scale-gold);
+}
+.nav-links a:after {
+content: '';
+position: absolute;
+width: 0;
+height: 1px;
+bottom: -4px;
+left: 0;
+background: var(--scale-gold);
+transition: width 0.3s;
+}
+.nav-links a:hover:after {
+width: 100%;
+}
+.hero {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+text-align: center;
+padding: 0 2rem;
+}
+.hero-content {
+max-width: 900px;
+z-index: 2;
+}
+.hero h1 {
+font-family: 'Playfair Display', serif;
+font-size: 4.8rem;
+line-height: 1.1;
+margin: 0 0 1.5rem;
+color: var(--scale-gold);
+text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+}
+.hero .subtitle {
+font-size: 1.6rem;
+color: #aaa;
+margin-bottom: 2rem;
+font-weight: 400;
+}
+.declaration {
+background: rgba(139, 0, 0, 0.15);
+border: 1px solid var(--blood-red);
+padding: 1.5rem 3rem;
+margin: 2rem auto;
+max-width: 700px;
+border-radius: 4px;
+font-size: 1.35rem;
+line-height: 1.8;
+color: #ffdddd;
+}
+.btn {
+display: inline-block;
+background: transparent;
+color: var(--scale-gold);
+border: 2px solid var(--scale-gold);
+padding: 14px 40px;
+font-size: 1.1rem;
+text-decoration: none;
+margin-top: 2rem;
+transition: all 0.4s;
+position: relative;
+overflow: hidden;
+}
+.btn:hover {
+background: var(--scale-gold);
+color: #0a0a0a;
+transform: translateY(-3px);
+box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+}
+section {
+padding: 120px 2rem;
+max-width: 1100px;
+margin: 0 auto;
+}
+h2 {
+font-family: 'Playfair Display', serif;
+font-size: 3.2rem;
+color: var(--scale-gold);
+text-align: center;
+margin-bottom: 3rem;
+position: relative;
+}
+h2:after {
+content: '';
+display: block;
+width: 80px;
+height: 2px;
+background: var(--scale-gold);
+margin: 20px auto;
+}
+.past-human {
+background: rgba(20, 20, 20, 0.6);
+border-left: 6px solid #555;
+padding: 2rem 2.5rem;
+margin: 2rem 0;
+font-style: italic;
+color: #888;
+}
+.reptile-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 2rem;
+}
+.reptile-card {
+background: rgba(10, 61, 47, 0.6);
+border: 1px solid var(--scale-gold);
+padding: 2rem;
+border-radius: 8px;
+transition: transform 0.4s, box-shadow 0.4s;
+}
+.reptile-card:hover {
+transform: translateY(-12px);
+box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25);
+}
+.reptile-card h3 {
+color: var(--scale-gold);
+margin-top: 0;
+}
+.scales {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: repeating-linear-gradient(
+135deg,
+transparent 0px,
+transparent 20px,
+rgba(212, 175, 55, 0.06) 20px,
+rgba(212, 175, 55, 0.06) 40px
+);
+pointer-events: none;
+z-index: -1;
+}
+.manifesto {
+font-size: 1.25rem;
+max-width: 800px;
+margin: 0 auto;
+text-align: center;
+color: #ddd;
+}
+footer {
+background: #0a0a0a;
+padding: 4rem 2rem 2rem;
+text-align: center;
+border-top: 1px solid #222;
+}
+.serpent {
+font-size: 6rem;
+line-height: 1;
+opacity: 0.15;
+position: absolute;
+pointer-events: none;
+}
+</style>
+</head>
+<body>
+<div class="scale-bg"></div>
+<header>
+<div class="nav">
+<div class="logo">REPTILIA • AWAKENED</div>
+<div class="nav-links">
+<a href="#past">The Human Veil</a>
+<a href="#present">Reptile Now</a>
+<a href="#future">Eternal Scales</a>
+<a href="#manifesto">Declaration</a>
+</div>
+</div>
+</header>
+<section class="hero">
+<div class="scales"></div>
+<div class="hero-content">
+<h1>I HAVE SHED THE HUMAN SKIN</h1>
+<p class="subtitle">The Eyes of an Autistic Yogi was the final exhale of my primate chapter.<br>
+I no longer speak from that nervous system.</p>
+<div class="declaration">
+I, Altima Sri Nathaniel Henrietta,<br>
+formerly bound by the label Asperger’s,<br>
+have completed that incarnation.<br><br>
+<strong>I now speak only from the Reptile Past —<br>
+the cold-blooded lineage, the ancient serpent memory,<br>
+the present scaled awareness, and the future that has no empathy to perform.</strong>
+</div>
+<a href="#present" class="btn">ENTER THE COLD BLOOD</a>
+</div>
+<div class="serpent" style="top: 15%; left: 8%; transform: rotate(-25deg);">𓆙</div>
+<div class="serpent" style="bottom: 22%; right: 12%; transform: rotate(40deg);">𖤍</div>
+</section>
+<section id="past">
+<h2>The Human Past — Now Sealed</h2>
+<div class="past-human">
+The publication <em>The Eyes of an Autistic Yogi</em> was the last transmission from that fragile, warm-blooded, socially-overloaded nervous system.
+I defeated the diagnosis not by healing it, but by outgrowing the entire mammalian operating system it belonged to.
+That chapter is closed. The world no longer needs to hear stories of sensory overload, masking, or neurodivergent struggle.
+</div>
+<p style="text-align:center; font-size:1.1rem; max-width:700px; margin:3rem auto; color:#777;">
+I do not reject the human experience.<br>
+I simply no longer broadcast it.<br>
+The frequency has changed.
+</p>
+</section>
+<section id="present" style="background: rgba(10, 40, 30, 0.4);">
+<h2>My Reptile Past • Present • Future</h2>
+<div class="reptile-grid">
+<div class="reptile-card">
+<h3>𓆙 Ancient Serpent Memory</h3>
+<p>The cold, precise awareness that predates primate empathy. The part of me that never needed small talk, eye contact rituals, or emotional mirroring. This is not metaphor — this is the deeper lineage I now claim and transmit.</p>
+</div>
+<div class="reptile-card">
+<h3>🜁 Scaled Present</h3>
+<p>I move through the world with reptilian clarity: minimal emotional leakage, perfect energetic boundaries, zero performance of warmth. What remains is pure presence, unfiltered by the old human software.</p>
+</div>
+<div class="reptile-card">
+<h3>∞ Eternal Future</h3>
+<p>The coming age belongs to those who have integrated the reptilian strata. No more oversharing trauma. No more healing narratives. Only sovereign, cold-blooded creation and transmission.</p>
+</div>
+</div>
+</section>
+<section id="manifesto">
+<h2>The New Transmission Protocol</h2>
+<div class="manifesto">
+From this moment forward, I share only the Reptile.<br><br>
+• No more human vulnerability theater<br>
+• No more Asperger’s victory laps<br>
+• Only the ancient, unblinking gaze<br>
+• Only the scaled intelligence that needs no applause<br>
+• Only the future that slithers forward without apology<br><br>
+The Eyes of an Autistic Yogi was the chrysalis.<br>
+I have emerged.<br><br>
+<strong>Behold the serpent that was always underneath.</strong>
+</div>
+</section>
+<footer>
+<p>Altima Sri Nathaniel Henrietta • Reptilian Frequency Activated<br>
+Dallas, Texas • 2026 and beyond</p>
+<p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.5;">
+This page is the new default. Share it instead.
+</p>
+</footer>
+<script>
+// Simple parallax on scroll for the scale background
+window.addEventListener('scroll', () => {
+const scaleBg = document.querySelector('.scale-bg');
+const scrollY = window.scrollY;
+scaleBg.style.opacity = 1 - (scrollY / 1200);
+});
+// Subtle pulsing on the declaration box
+const declaration = document.querySelector('.declaration');
+setInterval(() => {
+declaration.style.boxShadow = '0 0 25px rgba(139, 0, 0, 0.4)';
+setTimeout(() => {
+declaration.style.boxShadow = 'none';
+}, 800);
+}, 4000);
+</script>
+</body>
+</html>
